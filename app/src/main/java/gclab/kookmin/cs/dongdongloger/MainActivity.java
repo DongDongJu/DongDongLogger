@@ -43,7 +43,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mapIntet);
             }
         });
-
+        final Button saveButton = (Button) findViewById(R.id.button2);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent saveIntent = new Intent(getApplicationContext(),saveActivity.class);
+                saveIntent.putExtra("longi",longi);
+                saveIntent.putExtra("lat",lat);
+                startActivity(saveIntent);
+            }
+        });
     }
 
     private void getLocationService() {
