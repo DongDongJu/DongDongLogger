@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.location.LocationListener;
+import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,13 +16,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     private double lat;
     private double longi;
     GPSListener gpsListener;
     LocationManager man;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 saveIntent.putExtra("longi",longi);
                 saveIntent.putExtra("lat",lat);
                 startActivity(saveIntent);
+            }
+        });
+        final Button viewALlButton = (Button)findViewById(R.id.button3);
+        viewALlButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewALlIntent = new Intent(getApplicationContext(),viewAllActivity.class);
+                startActivity(viewALlIntent);
             }
         });
     }
